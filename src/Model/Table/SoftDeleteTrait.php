@@ -34,10 +34,7 @@ trait SoftDeleteTrait
 
         return $field;
     }
-    public function Query(): SelectQuery
-    {
-        return new SelectQuery($this->getConnection(), $this);
-    }
+
     /**
      * Query override.
      *
