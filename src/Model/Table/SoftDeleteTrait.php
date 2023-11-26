@@ -4,7 +4,7 @@ namespace SoftDelete\Model\Table;
 use Cake\ORM\RulesChecker;
 use Cake\Datasource\EntityInterface;
 use SoftDelete\Error\MissingColumnException;
-use SoftDelete\ORM\Query;
+use SoftDelete\ORM\SelectQuery;
 
 trait SoftDeleteTrait
 {
@@ -12,7 +12,7 @@ trait SoftDeleteTrait
      * Get the configured deletion field
      *
      * @return string
-     * @throws \SoftDelete\Error\MissingFieldException
+     * @throws \SoftDelete\Error\MissingColumnException
      */
     public function getSoftDeleteField()
     {
@@ -41,11 +41,11 @@ trait SoftDeleteTrait
      * Fatal error: Declaration of SoftDelete\Model\Table\SoftDeleteTrait::query(): SoftDelete\ORM\Query must be compatible with Cake\ORM\Table::query(): Cake\ORM\Query
      * 上記エラー回避のため戻り値の型宣言では実体と異なるがCakePHP本体のquery()で定義されている上書き元の型（\Cake\ORM\Query）を明示する
      *
-     * @return \SoftDelete\ORM\Query
+     * @return \SoftDelete\ORM\SelectQuery
      */
-    public function query(): \Cake\ORM\Query
+    public function SelectQuery(): SelectQuery
     {
-        return new Query($this->getConnection(), $this);
+        return new SelectQuery($this->getConnection(), $this);
     }
 
     /**
